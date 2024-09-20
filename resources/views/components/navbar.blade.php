@@ -57,7 +57,7 @@
                     </ul>
                 </li>
 
-                <li><a href="#" class="sub-menu-item">Branches</a></li>
+                <li><a href="/branches" class="sub-menu-item">Branches</a></li>
 
                 <li><a href="#" class="sub-menu-item">About Us</a></li>
 
