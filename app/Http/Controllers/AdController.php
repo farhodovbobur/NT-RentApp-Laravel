@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Ad;
 use App\Models\Branch;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 
 class AdController extends Controller
@@ -37,7 +40,7 @@ class AdController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id): View|Factory|Application
     {
         $ad = Ad::query()->find($id);
         return view('single-ad', ['ad' => $ad]);
