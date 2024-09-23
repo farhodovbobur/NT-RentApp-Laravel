@@ -1,4 +1,4 @@
-<x-layouts.main>
+<x-main-layout>
     <!-- Start -->
     <section class="relative lg:py-24 py-16">
         <div class="container relative">
@@ -30,4 +30,4 @@
 
     </section><!--end section-->
     <!-- End -->
-</x-layouts.main>
+</x-main-layout>

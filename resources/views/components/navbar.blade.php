@@ -24,7 +24,7 @@
 
         <!--Login button Start-->
         <ul class="buy-button list-none mb-0">
-            @if(\Illuminate\Support\Facades\Session::get('user'))
+            @if(@auth()->user())
                 <li class="sm:inline ps-1 mb-0 hidden">
                     <a href="/ads/create" class="btn bg-green-600 hover:bg-green-700 border-green-600 dark:border-green-600 text-white rounded-full">Create Ad</a>
                 </li>

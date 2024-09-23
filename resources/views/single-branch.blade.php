@@ -1,4 +1,4 @@
-<x-layouts.main>
+<x-main-layout>
 
     <!-- Start -->
     <section class="relative md:py-24 pt-24 pb-16">
@@ -41,16 +41,16 @@
                 </div>
             </div><!--end grid-->
         </div><!--end container-->
-
+        
         <div class="container relative mt-6">
 
             <h5 class="text-xl font-medium mt-6 mb-4">Our Listings</h5>
 
-            <x-ads :ads="$ads"/>
+            <x-ads/>
 
         </div><!--end container-->
 
     </section><!--end section-->
     <!-- End -->
 
-</x-layouts.main>
+</x-main-layout>

@@ -2,21 +2,18 @@
 
 namespace App\View\Components;
 
-use App\Models\Ad;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Ads extends Component
+class MainLayout extends Component
 {
-    public $ads;
-
     /**
      * Create a new component instance.
      */
     public function __construct()
     {
-        $this->ads = Ad::all();
+        //
     }
 
     /**
@@ -24,6 +21,6 @@ class Ads extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.ads');
+        return view('layouts.main');
     }
 }

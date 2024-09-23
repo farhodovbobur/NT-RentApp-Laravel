@@ -1,4 +1,4 @@
-<x-layouts.main>
+<x-main-layout>
 
     <!-- Start -->
     <section class="relative md:py-24 pt-24 pb-16">
@@ -87,4 +87,4 @@
     </section><!--end section-->
     <!-- End -->
 
-</x-layouts.main>
+</x-main-layout>

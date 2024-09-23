@@ -1,3 +1,4 @@
+
 <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-[30px]">
     @foreach ($ads as $ad)
         <div class="group rounded-xl bg-white dark:bg-slate-900 shadow hover:shadow-xl dark:hover:shadow-xl dark:shadow-gray-700 dark:hover:shadow-gray-700 overflow-hidden ease-in-out duration-500">

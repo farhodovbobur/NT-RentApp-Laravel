@@ -2,46 +2,41 @@
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
+    <div class="container_style">
+        <div class="wrapper">
+            <a href="/"><span class="icon-close"><ion-icon name="close"></ion-icon></span></a>
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+            <div class="form-box login">
+                <h2>Login</h2>
+                <form action="{{ route('login') }}" method="POST">
+                    @csrf
+                    <div class="input-box">
+                        <span class="icon"><ion-icon name="call"></ion-icon></span>
+                        <input type="tel" id="phone" name="phone" pattern="\d{1, 9}" maxlength="9" inputmode="numeric" style="padding-left: 50px" value="{{ old('phone') }}" required oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+                        <x-input-error :messages="$errors->get('phone')" class="mt-2" />
+                        <label>Phone number</label>
+                        <span class="code">+998</span>
+                    </div>
+                    <div class="input-box">
+                        <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                        <input type="password" id="password" name="password" required oninput="this.value = this.value.replace(/^\s+|\s+$/g, '');">
+                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                        <label>Password</label>
+                    </div>
+
+                    <div class="error_style">
+                        @if(session()->has('error'))
+                            {{ session()->get('error') }}
+                        @endif
+                    </div>
+                    <button type="submit" class="btn_style">Login</button>
+                    <div class="login-register">
+                        <p>Don't have an account?
+                            <a href="/register" class="register-link">Register</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
         </div>
-
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
-                <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
-            </label>
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-    </form>
+    </div>
 </x-guest-layout>

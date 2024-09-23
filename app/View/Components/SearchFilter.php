@@ -2,21 +2,21 @@
 
 namespace App\View\Components;
 
-use App\Models\Ad;
+use App\Models\Branch;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Ads extends Component
+class SearchFilter extends Component
 {
-    public $ads;
+    public $branches;
 
     /**
      * Create a new component instance.
      */
     public function __construct()
     {
-        $this->ads = Ad::all();
+        $this->branches = Branch::all();
     }
 
     /**
@@ -24,6 +24,6 @@ class Ads extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.ads');
+        return view('components.search-filter');
     }
 }

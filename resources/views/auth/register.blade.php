@@ -1,52 +1,45 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
-        @csrf
+    <div class="container_style">
+        <div class="wrapper" style="height: 550px">
+            <a href="/"><span class="icon-close"><ion-icon name="close"></ion-icon></span></a>
 
-        <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+            <div class="form-box register">
+                <h2>Register</h2>
+                <form action="{{ route('register') }}" method="POST">
+                    @csrf
+                    <div class="input-box">
+                        <span class="icon"><ion-icon name="person"></ion-icon></span>
+                        <input type="text" id="name" name="name" value="{{ old('name') }}" required oninput="this.value = this.value.replace(/^\s+|\s+$/g, '');">
+                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                        <label>Username</label>
+                    </div>
+                    <div class="gender">
+                        <label><input type="radio" id="gender" name="gender" value="male" required>Male</label>
+
+                        <label><input type="radio" id="gender" name="gender" value="female" required>Female</label>
+                    </div>
+                    <div class="input-box">
+                        <span class="icon"><ion-icon name="call"></ion-icon></span>
+                        <input type="tel" id="phone" name="phone" pattern="\d{1, 9}" maxlength="9" inputmode="numeric" style="padding-left: 50px" value="{{ old('phone') }}" required oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 9);">
+                        <x-input-error :messages="$errors->get('phone')" class="mt-2" />
+                        <label>Phone number</label>
+                        <span class="code">+998</span>
+                    </div>
+                    <div class="input-box">
+                        <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                        <input type="password" id="password" name="password" minlength="4" required oninput="this.value = this.value.replace(/^\s+|\s+$/g, '');">
+                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                        <label>Password</label>
+                    </div>
+
+                    <button type="submit" class="btn_style">Register</button>
+                    <div class="login-register">
+                        <p>Already have an account?
+                            <a href="/login" class="login-link">Login</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
         </div>
-
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
-
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
-
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
-            </x-primary-button>
-        </div>
-    </form>
+    </div>
 </x-guest-layout>
