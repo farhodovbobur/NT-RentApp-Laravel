@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ad;
 use App\Models\Branch;
+use App\Models\User;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
@@ -17,7 +18,7 @@ class AdController extends Controller
     public function index()
     {
         $branches = Branch::all();
-        $ads = Ad::all();
+        $ads      = Ad::all();
         return view('home', ['branches' => $branches, 'ads' => $ads]);
     }
 
@@ -26,7 +27,7 @@ class AdController extends Controller
      */
     public function create()
     {
-        //
+        return view('create-ad');
     }
 
     /**
@@ -68,5 +69,35 @@ class AdController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function search(Request $request)
+    {
+        $search   = $request->search_phrase;
+        $branch   = $request->branch;
+        $minPrice = $request->min_price;
+        $maxPrice = $request->max_price;
+
+        $query = Ad::query();
+
+        if (isset($search) && $search != null) {
+            $query->where('title', 'like', "%$search%")
+                  ->orWhere('description', 'like', "%$search%");
+        }
+
+        if (isset($branch) && $branch != null) {
+            $query->where('branch_id', 'like', $branch);
+        }
+
+        if (isset($minPrice) && $minPrice != null) {
+            $query->where('price', '>=', $minPrice);
+        }
+        if (isset($maxPrice) && $maxPrice != null) {
+            $query->where('price', '<=', $maxPrice);
+        }
+
+        $ads = $query->get();
+
+        return view('home', ['ads' => $ads]);
     }
 }

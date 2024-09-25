@@ -23,7 +23,7 @@
     <!-- Start -->
     <section class="relative lg:py-12 py-16">
         <div class="container relative">
-            <x-ads/>
+            <x-ads :ads="$ads"/>
 
             <div class="grid md:grid-cols-12 grid-cols-1 mt-8">
                 <div class="md:col-span-12 text-center">

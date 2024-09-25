@@ -19,7 +19,7 @@ class LoginController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'phone' => ['required', 'numeric', 'min_digits:9', 'exists:users,phone'],
+            'phone'    => ['required', 'numeric', 'min_digits:9', 'exists:users,phone'],
             'password' => ['required', Rules\Password::defaults(), 'exists:users,password'],
         ]);
 

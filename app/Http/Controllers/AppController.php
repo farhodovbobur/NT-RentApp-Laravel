@@ -14,7 +14,7 @@ class AppController extends Controller
     public function home(): View|Factory|Application
     {
         $branches = Branch::all();
-        $ads = Ad::all();
+        $ads      = Ad::all();
         return view('home', ['branches' => $branches, 'ads' => $ads]);
     }
 

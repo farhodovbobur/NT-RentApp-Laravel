@@ -9,14 +9,14 @@ use Illuminate\View\Component;
 
 class Ads extends Component
 {
-    public $ads;
-
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct(
+        public $ads
+    )
     {
-        $this->ads = Ad::all();
+
     }
 
     /**

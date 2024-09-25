@@ -10,6 +10,8 @@ Route::get('/', [AppController::class, 'home'])->name('home');
 
 Route::resource('ads', AdController::class);
 
+Route::get('/search', [AdController::class, 'search']);
+
 Route::resource('branches', BranchController::class);
 
 Route::get('/dashboard', function () {

@@ -41,7 +41,7 @@
                 </div>
             </div><!--end grid-->
         </div><!--end container-->
-        
+
         <div class="container relative mt-6">
 
             <h5 class="text-xl font-medium mt-6 mb-4">Our Listings</h5>

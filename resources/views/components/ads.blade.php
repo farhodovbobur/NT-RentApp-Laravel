@@ -57,7 +57,7 @@
 </div><!--en grid-->
 
 
-@if (empty($ads))
+@if ($ads->isEmpty())
     <div class="container relative lg:mt-2 mt-16">
         <div class="grid grid-cols-1 text-center">
             <h3 class="mb-6 md:text-3xl md:leading-normal text-2xl leading-normal font-semibold">No resources!</h3>

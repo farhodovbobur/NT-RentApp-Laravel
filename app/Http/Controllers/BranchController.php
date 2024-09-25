@@ -41,7 +41,7 @@ class BranchController extends Controller
     public function show(string $id): View|Factory|Application
     {
         $branch = Branch::query()->find($id);
-        $ads = $branch->ads;
+        $ads    = $branch->ads;
         return view('single-branch', ['branch' => $branch, 'ads' => $ads]);
     }
 

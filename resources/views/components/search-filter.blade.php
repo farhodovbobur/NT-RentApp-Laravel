@@ -43,7 +43,7 @@
                                         <label for="buy-min-price" class="form-label font-medium text-slate-900 dark:text-white">Min Price :</label>
                                         <div class="filter-search-form relative filter-border mt-2">
                                             <i class="uil uil-usd-circle icons"></i>
-                                            <input name="min-price" type="number" id="choices-min-price-buy" class="form-input filter-input-box bg-gray-50 dark:bg-slate-800 border-0" data-trigger aria-label="Default select example" placeholder="Min Price">
+                                            <input name="min_price" type="number" id="choices-min-price-buy" class="form-input filter-input-box bg-gray-50 dark:bg-slate-800 border-0" data-trigger aria-label="Default select example" placeholder="Min Price">
                                         </div>
                                     </div>
 
@@ -51,7 +51,7 @@
                                         <label for="buy-max-price" class="form-label font-medium text-slate-900 dark:text-white">Max Price :</label>
                                         <div class="filter-search-form relative mt-2">
                                             <i class="uil uil-usd-circle icons"></i>
-                                            <input name="max-price" type="number" id="choices-max-price-buy" class="form-input filter-input-box bg-gray-50 dark:bg-slate-800 border-0" data-trigger aria-label="Default select example" placeholder="Min Price">
+                                            <input name="max_price" type="number" id="choices-max-price-buy" class="form-input filter-input-box bg-gray-50 dark:bg-slate-800 border-0" data-trigger aria-label="Default select example" placeholder="Min Price">
                                         </div>
                                     </div>
 

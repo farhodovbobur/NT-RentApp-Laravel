@@ -2,10 +2,20 @@
 
 namespace App\Models;
 
+use App\View\Components\Ads;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Status extends Model
 {
     use HasFactory;
+
+    const int ACTIVE = 1;
+    const int INACTIVE = 2;
+
+    public function ads(): HasMany
+    {
+        return $this->hasMany(Ads::class);
+    }
 }
