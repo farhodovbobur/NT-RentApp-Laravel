@@ -12,6 +12,19 @@ class Ad extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'title',
+        'address',
+        'price',
+        'rooms',
+        'square',
+        'description',
+        'gender',
+        'user_id',
+        'branch_id',
+        'status_id',
+    ];
+
     public function branch(): BelongsTo
     {
         return $this->belongsTo(Branch::class);
@@ -31,5 +44,10 @@ class Ad extends Model
     {
         return $this->hasOne(User::class, 'id', 'user_id');
 
+    }
+
+    public function images(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(AdImage::class);
     }
 }

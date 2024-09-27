@@ -4,7 +4,7 @@
         <div class="group rounded-xl bg-white dark:bg-slate-900 shadow hover:shadow-xl dark:hover:shadow-xl dark:shadow-gray-700 dark:hover:shadow-gray-700 overflow-hidden ease-in-out duration-500">
             <a href="/ads/{{ $ad->id }}">
                 <div class="relative">
-                    <img src="../assets/images/ads/{{ $ad->image_name }}" alt="">
+                    <img src="{{asset("/storage/".$ad->images->first()?->name)}}" alt="">
 
                     <div class="absolute top-4 end-4">
                         <a href="javascript:void(0)" class="btn btn-icon bg-white dark:bg-slate-900 shadow dark:shadow-gray-700 rounded-full text-slate-100 dark:text-slate-700 focus:text-yellow-400 dark:focus:text-yellow-400 hover:text-yellow-400 dark:hover:text-yellow-400"><i class="mdi mdi-bookmark text-[20px]"></i></a>
