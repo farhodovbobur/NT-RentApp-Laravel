@@ -4,11 +4,15 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Resources;
 
+use App\Enums\GenderEnum;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 
+use MoonShine\Fields\Date;
 use MoonShine\Fields\Email;
+use MoonShine\Fields\Enum;
 use MoonShine\Fields\Phone;
+use MoonShine\Fields\Relationships\HasMany;
 use MoonShine\Fields\Text;
 use MoonShine\Resources\ModelResource;
 use MoonShine\Decorations\Block;
@@ -43,6 +47,18 @@ class UserResource extends ModelResource
                     ->expansion('+998')
                     ->mask('(99) 999-99-99')
                     ->required(),
+                Enum::make('Gender')
+                    ->attach(GenderEnum::class)
+                    ->sortable()
+                    ->required(),
+                Date::make('Created at', 'updated_at')
+                    ->format('d.m.Y H:i:s')
+                    ->disabled()
+                    ->hideOnIndex()
+                    ->hideOnCreate()
+                    ->hideOnUpdate(),
+                HasMany::make('Ads', 'ads', resource: new AdResource())
+                    ->onlyLink()
             ]),
         ];
     }

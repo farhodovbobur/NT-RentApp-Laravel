@@ -9,6 +9,7 @@ use Illuminate\View\Component;
 
 class AdForm extends Component
 {
+    public $action = '/ads';
     public $branches;
     /**
      * Create a new component instance.

@@ -7,6 +7,7 @@ namespace App\MoonShine\Resources;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Branch;
 
+use MoonShine\Fields\Text;
 use MoonShine\Resources\ModelResource;
 use MoonShine\Decorations\Block;
 use MoonShine\Fields\ID;
@@ -32,6 +33,8 @@ class BranchResource extends ModelResource
         return [
             Block::make([
                 ID::make()->sortable(),
+                Text::make('Name')->required(),
+                Text::make('Address')->required(),
             ]),
         ];
     }

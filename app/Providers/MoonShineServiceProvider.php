@@ -57,7 +57,7 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
                 ),
             ]),
 
-            MenuItem::make('Ads', new AdResource())->icon('heroicons.list-bullet'),
+            MenuItem::make('Ads', new AdResource())->icon('heroicons.newspaper'),
             MenuItem::make('Branches', new BranchResource())->icon('heroicons.building-office-2'),
             MenuItem::make('Users', new UserResource())->icon('heroicons.user-group'),
 
