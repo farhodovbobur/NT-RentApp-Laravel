@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class AdImage extends Model
 {
@@ -14,7 +15,7 @@ class AdImage extends Model
         'name',
     ];
 
-    public function ad(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function ad(): BelongsTo
     {
         return $this->belongsTo(Ad::class);
     }

@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Resources;
 
+use App\Models\Ad;
+use App\Models\AdImage;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Branch;
 
-use MoonShine\Fields\Relationships\HasMany;
-use MoonShine\Fields\Text;
+
+use MoonShine\Fields\Image;
+use MoonShine\Fields\Relationships\BelongsTo;
 use MoonShine\Resources\ModelResource;
 use MoonShine\Decorations\Block;
 use MoonShine\Fields\ID;
@@ -16,13 +18,13 @@ use MoonShine\Fields\Field;
 use MoonShine\Components\MoonShineComponent;
 
 /**
- * @extends ModelResource<Branch>
+ * @extends ModelResource<Image>
  */
-class BranchResource extends ModelResource
+class ImageResource extends ModelResource
 {
-    protected string $model = Branch::class;
+    protected string $model = AdImage::class;
 
-    protected string $title = 'Branches';
+    protected string $title = 'Images';
 
     protected string $column = 'name';
 
@@ -34,20 +36,15 @@ class BranchResource extends ModelResource
         return [
             Block::make([
                 ID::make()->sortable(),
-                Text::make('Name')->required(),
-                Text::make('Address')->required(),
-                HasMany::make('Ads', 'ads', resource: new AdResource())
-                    ->hideOnAll()
-                    ->showOnIndex()
-                    ->onlyLink(),
-                HasMany::make('Ads', 'ads', resource: new AdResource())
-                    ->hideOnIndex(),
+                Image::make('Name')->removable(),
+                BelongsTo::make('Ad', 'ad', resource: new AdResource())->disabled()
+                         ->badge(),
             ]),
         ];
     }
 
     /**
-     * @param Branch $item
+     * @param Image $item
      *
      * @return array<string, string[]|string>
      * @see https://laravel.com/docs/validation#available-validation-rules

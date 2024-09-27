@@ -15,8 +15,10 @@ use MoonShine\Decorations\Column;
 use MoonShine\Decorations\Grid;
 use MoonShine\Fields\Date;
 use MoonShine\Fields\Enum;
+use MoonShine\Fields\Image;
 use MoonShine\Fields\Number;
 use MoonShine\Fields\Relationships\BelongsTo;
+use MoonShine\Fields\Relationships\HasMany;
 use MoonShine\Fields\Relationships\HasOne;
 use MoonShine\Fields\Switcher;
 use MoonShine\Fields\Text;
@@ -97,6 +99,14 @@ class AdResource extends ModelResource
                             ->hideOnCreate()
                             ->hideOnUpdate()
                             ->required(),
+
+                        HasMany::make('Images', 'images', resource: new ImageResource)
+                               ->hideOnAll()
+                               ->showOnIndex()
+                               ->onlyLink(),
+
+                        HasMany::make('Images', 'images', resource: new ImageResource)->hideOnIndex()
+
                     ]),
                 ])->columnSpan(4),
 

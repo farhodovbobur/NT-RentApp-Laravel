@@ -58,7 +58,11 @@ class UserResource extends ModelResource
                     ->hideOnCreate()
                     ->hideOnUpdate(),
                 HasMany::make('Ads', 'ads', resource: new AdResource())
-                    ->onlyLink()
+                    ->hideOnAll()
+                    ->showOnIndex()
+                    ->onlyLink(),
+                HasMany::make('Ads', 'ads', resource: new AdResource())
+                       ->hideOnIndex()
             ]),
         ];
     }

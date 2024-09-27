@@ -20,7 +20,7 @@ class AdController extends Controller
      */
     public function index(): View|Factory|Application
     {
-        $ads = Ad::with('images')->get();
+        $ads      = Ad::with('images')->get();
         $branches = Branch::all();
         return view('home', compact('ads', 'branches'));
     }
@@ -36,33 +36,28 @@ class AdController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): void
+    public function store(Request $request)
     {
-//        $request->validate([
-//            'title' => 'required|min:5',
-//            'description' => 'required',
-//            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-//        ]);
-
         $ad = Ad::query()->create([
-            'title' => $request->get('title'),
-            'address' => $request->get('address'),
-            'rooms' => $request->get('rooms'),
-            'square' => $request->get('square'),
-            'branch_id' => $request->get('branch'),
+            'title'       => $request->get('title'),
+            'address'     => $request->get('address'),
+            'rooms'       => $request->get('rooms'),
+            'square'      => $request->get('square'),
+            'branch_id'   => $request->get('branch'),
             'description' => $request->get('desc'),
-            'price' => $request->get('price'),
-            'user_id' => $request->get('user'),
-            'status_id' => $request->get('status'),
-//            'gender' => $request->get('gender'),
+            'price'       => $request->get('price'),
+            'user_id'     => $request->get('user'),
+            'status_id'   => $request->get('status'),
         ]);
-//            dd('fdas');
+
         $file = Storage::disk('public')->put('/', $request->image);
 
         AdImage::query()->create([
             'ad_id' => $ad->id,
-            'name' => $file,
+            'name'  => $file,
         ]);
+
+        return $this->index();
     }
 
     /**
@@ -108,8 +103,7 @@ class AdController extends Controller
         $query = Ad::query();
 
         if (isset($search) && $search != null) {
-            $query->where('title', 'like', "%$search%")
-                  ->orWhere('description', 'like', "%$search%");
+            $query->where('title', 'like', "%$search%")->orWhere('description', 'like', "%$search%");
         }
 
         if (isset($branch) && $branch != null) {
