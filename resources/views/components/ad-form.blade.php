@@ -10,7 +10,8 @@
         </div>
 
         <div class="rounded-md shadow dark:shadow-gray-700 p-6 bg-white dark:bg-slate-900 h-fit">
-            <form id="ads-create" action="/ads/create" method="post" enctype="multipart/form-data">
+            <form id="ads-create" action="{{$action}}" method="post" enctype="multipart/form-data">
+                @csrf
                 <div class="grid grid-cols-12 gap-5">
 
                     <div class="col-span-12">
@@ -95,5 +96,27 @@
         </div>
     </div>
 </div>
+<script>
+    const handleChange = () => {
+        const fileUploader = document.querySelector('#input-file');
+        const getFile = fileUploader.files
+        if (getFile.length !== 0) {
+            const uploadedFile = getFile[0];
+            readFile(uploadedFile);
+        }
+    }
+
+    const readFile = (uploadedFile) => {
+        if (uploadedFile) {
+            const reader = new FileReader();
+            reader.onload = () => {
+                const parent = document.querySelector('.preview-box');
+                parent.innerHTML = `<img class="preview-content" src=${reader.result} />`;
+            };
+
+            reader.readAsDataURL(uploadedFile);
+        }
+    };
+</script>
 <!-- End Content -->
 
