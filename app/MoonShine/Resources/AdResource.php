@@ -57,12 +57,7 @@ class AdResource extends ModelResource
             Grid::make([
                 Column::make([
                     Block::make([
-                        BelongsTo::make('Author', 'user', resource: new UserResource())
-                            ->asyncSearch()
-                            ->disabled()
-                            ->badge('green')
-                            ->sortable()
-                            ->required(),
+                        BelongsTo::make('Author', 'user', resource: new UserResource())->asyncSearch()->disabled()->badge('green')->sortable()->required(),
                     ]),
                 ]),
 
@@ -71,39 +66,21 @@ class AdResource extends ModelResource
                         Text::make('Title')->required(),
                         Textarea::make('Description')->hideOnIndex()->required(),
                         Text::make('Address')->required(),
-                        BelongsTo::make('Branch', 'branch', resource: new BranchResource())
-                                 ->badge()
-                                 ->required(),
+                        BelongsTo::make('Branch', 'branch', resource: new BranchResource())->badge()->required(),
                     ]),
                 ])->columnSpan(6),
 
                 Column::make([
                     Block::make([
                         Number::make('Rooms')->sortable()->required(),
-                        Number::make('Square ( m2 )', 'square', fn($model) => $model->square . ' m2')
-                              ->sortable()
-                              ->required(),
-                        Number::make('Price ( $ )', 'price', fn($model) => $model->price . ' $')
-                              ->sortable()
-                              ->required(),
+                        Number::make('Square ( m2 )', 'square', fn($model) => $model->square . ' m2')->sortable()->required(),
+                        Number::make('Price ( $ )', 'price', fn($model) => $model->price . ' $')->sortable()->required(),
 
-                        Enum::make('Gender')
-                            ->attach(GenderEnum::class)
-                            ->sortable()
-                            ->required(),
+                        Enum::make('Gender')->attach(GenderEnum::class)->sortable()->required(),
 
-                        Date::make('Created at')
-                            ->format('d.m.Y')
-                            ->disabled()
-                            ->hideOnIndex()
-                            ->hideOnCreate()
-                            ->hideOnUpdate()
-                            ->required(),
+                        Date::make('Created at')->format('d.m.Y')->disabled()->hideOnIndex()->hideOnCreate()->hideOnUpdate()->required(),
 
-                        HasMany::make('Images', 'images', resource: new ImageResource)
-                               ->hideOnAll()
-                               ->showOnIndex()
-                               ->onlyLink(),
+                        HasMany::make('Images', 'images', resource: new ImageResource)->hideOnAll()->showOnIndex()->onlyLink(),
 
                         HasMany::make('Images', 'images', resource: new ImageResource)->hideOnIndex()
 
@@ -112,17 +89,12 @@ class AdResource extends ModelResource
 
                 Column::make([
                     Block::make([
-                        Switcher::make('Status', 'status_id')
-                            ->onValue(1)
-                            ->offValue(2)
-                            ->updateOnPreview()
+                        Switcher::make('Status', 'status_id')->onValue(1)->offValue(2)->updateOnPreview()
                     ])
                 ])->columnSpan(2)
             ]),
 
-            HasOne::make('Author', 'author', resource: new UserResource())
-                  ->disabled()
-                  ->hideOnIndex()->hideOnDetail()
+            HasOne::make('Author', 'author', resource: new UserResource())->disabled()->hideOnIndex()->hideOnDetail()
         ];
     }
 
