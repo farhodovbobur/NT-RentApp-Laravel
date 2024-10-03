@@ -1,19 +1,27 @@
-
 <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-[30px]">
     @foreach ($ads as $ad)
-        <div class="group rounded-xl bg-white dark:bg-slate-900 shadow hover:shadow-xl dark:hover:shadow-xl dark:shadow-gray-700 dark:hover:shadow-gray-700 overflow-hidden ease-in-out duration-500">
+        <div
+            class="group rounded-xl bg-white dark:bg-slate-900 shadow hover:shadow-xl dark:hover:shadow-xl dark:shadow-gray-700 dark:hover:shadow-gray-700 overflow-hidden ease-in-out duration-500">
             <a href="/ads/{{ $ad->id }}">
                 <div class="relative">
                     <img src="{{asset("/storage/".$ad->images->first()?->name)}}" alt="">
 
                     <div class="absolute top-4 end-4">
-                        <a href="javascript:void(0)" class="btn btn-icon bg-white dark:bg-slate-900 shadow dark:shadow-gray-700 rounded-full text-slate-100 dark:text-slate-700 focus:text-yellow-400 dark:focus:text-yellow-400 hover:text-yellow-400 dark:hover:text-yellow-400"><i class="mdi mdi-bookmark text-[20px]"></i></a>
+                        <form action="/ads/{{$ad->id}}/bookmark" method="post">
+                            @csrf
+                            <button type="submit"
+                                    class="btn btn-icon bg-white dark:bg-slate-900 shadow dark:shadow-gray-700 rounded-full {{$ad->bookmarked ? 'text-red-600 dark:text-red-600' : 'text-slate-100 dark:text-slate-100'}} focus:text-red-600 dark:focus:text-red-600 hover:text-red-600 dark:hover:text-red-600">
+
+                                <i data-feather="bookmark" class="text-[20px]"></i>
+                            </button>
+                        </form>
                     </div>
                 </div>
             </a>
             <div class="p-6">
                 <div class="pb-6">
-                    <a href="/ads/{{ $ad->id }}" class="text-lg hover:text-green-600 font-medium ease-in-out duration-500">{{  $ad->title }}</a>
+                    <a href="/ads/{{ $ad->id }}"
+                       class="text-lg hover:text-green-600 font-medium ease-in-out duration-500">{{  $ad->title }}</a>
                 </div>
 
                 <ul class="py-6 border-y border-slate-100 dark:border-gray-800 flex items-center list-none">

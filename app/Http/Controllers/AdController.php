@@ -20,9 +20,14 @@ class AdController extends Controller
      */
     public function index(): View|Factory|Application
     {
-        $ads      = Ad::with('images')->get();
         $branches = Branch::all();
-        return view('home', compact('ads', 'branches'));
+        $userId = auth()->id();
+        $ads = Ad::query()->withCount([
+            'bookmarkedByUsers as bookmarked' => function ($query) use ($userId) {
+                $query->where('user_id', $userId);
+            }
+        ])->get();
+        return view('ads.index', compact('ads', 'branches'));
     }
 
     /**
