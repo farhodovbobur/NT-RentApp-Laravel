@@ -21,7 +21,7 @@
     <!-- End Hero -->
 
     <!-- Start -->
-    <section class="relative lg:py-12 py-16">
+    <section class="relative lg:py-1 py-16">
         <div class="container relative">
             <x-ads :ads="$ads"/>
 

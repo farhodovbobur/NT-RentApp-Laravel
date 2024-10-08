@@ -46,7 +46,7 @@
 
             <h5 class="text-xl font-medium mt-6 mb-4">Our Listings</h5>
 
-            <x-ads/>
+            <x-ads :ads="$ads"/>
 
         </div><!--end container-->
 

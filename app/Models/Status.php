@@ -14,6 +14,7 @@ class Status extends Model
     const int ACTIVE = 1;
     const int INACTIVE = 2;
 
+    public $timestamps = false;
     public function ads(): HasMany
     {
         return $this->hasMany(Ads::class);

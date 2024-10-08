@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Route;
 Route::post('/tokens/create', function (Request $request) {
 
     $user = User::query()->create([
-        'name' => $request->name,
-        'phone' => $request->phone,
+        'name'     => $request->name,
+        'phone'    => $request->phone,
         'password' => Hash::make($request->password)
     ]);
 
