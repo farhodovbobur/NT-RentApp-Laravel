@@ -10,6 +10,11 @@ class Branch extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'address',
+    ];
+
     public function ads(): HasMany
     {
         return $this->hasMany(Ad::class);
