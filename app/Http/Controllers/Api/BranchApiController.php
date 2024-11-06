@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\DTO\BranchDTO;
 use App\Http\Controllers\Controller;
+use App\Models\Branch;
 use Illuminate\Http\Request;
 
 class BranchApiController extends Controller
@@ -12,7 +14,11 @@ class BranchApiController extends Controller
      */
     public function index()
     {
-        //
+        $branches = Branch::all();
+
+        $branchDTO = $branches->map(fn ($branch) => new BranchDTO($branch->toArray()));
+
+        return response()->json($branchDTO);
     }
 
     /**

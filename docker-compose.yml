@@ -32,7 +32,7 @@ services:
     expose:
       - 5432
     ports:
-      - "5432:5432"
+      - "2346:5432"
     environment:
       POSTGRES_DB: ${DB_DATABASE}
       POSTGRES_USER: ${DB_USERNAME}
