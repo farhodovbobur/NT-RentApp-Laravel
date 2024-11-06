@@ -12,8 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('number')->nullable()->change();
-            $table->enum('gender', ['male', 'female'])->nullable()->change();
+            $table->integer('phone')->after('name')->unique()->nullable();
+            $table->enum('gender', ['male', 'female'])->after('password')->nullable();
+            $table->string('position')->after('gender')->nullable();
         });
     }
 
@@ -23,8 +24,9 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('number');
-            $table->enum('gender', ['male', 'female']);
+            $table->dropColumn('phone');
+            $table->dropColumn('gender');
+            $table->dropColumn('position');
         });
     }
 };

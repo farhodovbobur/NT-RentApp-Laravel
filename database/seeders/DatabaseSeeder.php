@@ -14,6 +14,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Ad::factory()->count(100)->create();
+        $this->call([
+            UserSeeder::class,
+            BranchSeeder::class,
+            StatusSeeder::class,
+            AdSeeder::class,
+        ]);
     }
 }
