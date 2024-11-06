@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Api\AdApiController;
+use App\Http\Controllers\Api\BranchApiController;
+use App\Http\Controllers\Api\StatusApiController;
+use App\Http\Controllers\Api\UserApiController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -21,3 +25,11 @@ Route::post('/tokens/create', function (Request $request) {
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
+
+Route::apiResource('/users',  UserApiController::class);
+
+Route::apiResource('/branches', BranchApiController::class);
+
+Route::apiResource('/statuses', StatusApiController::class);
+
+Route::apiResource('/ads', AdApiController::class);
