@@ -18,6 +18,17 @@ class AdController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function index(): View|Factory|Application
+    {
+        $branches = Branch::all();
+        $userId = auth()->id();
+        $ads = Ad::query()->withCount([
+            'bookmarkedByUsers as bookmarked' => function ($query) use ($userId) {
+                $query->where('user_id', $userId);
+            }
+        ])->get();
+        return view('ads.index', compact('ads', 'branches'));
+    }
 
     /**
      * Show the form for creating a new resource.
