@@ -80,7 +80,7 @@ class BranchApiController extends Controller
         $branch = $this->findOrFail($id);
 
         $branch->delete();
-        
+
         return response()->json([
             'message' => 'Branch deleted successfully'
         ], 202);
