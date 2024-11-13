@@ -57,8 +57,9 @@ jobs:
           port: ${{ secrets.PORT }}
           script: |
             set -e
-            cd online-store
+            cd NT-RentApp-Laravel
             git reset --hard HEAD
             git pull
+            docker compose down
             docker compose -f docker-compose.production.yml up --build -d
-            docker exec os_app php artisan optimize
+            docker exec ntra-app php artisan optimize:clear
